@@ -586,7 +586,7 @@ class LX16A:
         packet = [self._id, 3, 28]
         LX16A._send_packet(packet)
 
-        print('Motor = ', self._id)
+        # print('Motor = ', self._id)
         received = LX16A._read_packet(2, self._id)
         angle = received[0] + received[1] * 256
         return LX16A._from_servo_range(angle - 65536 if angle > 32767 else angle)
