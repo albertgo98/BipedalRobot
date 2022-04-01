@@ -20,7 +20,7 @@ class RobotController():
 	'''
 	def __init__(self):
 
-		LX16A.initialize("/dev/tty.usbserial-1110")
+		LX16A.initialize("/dev/tty.usbserial-120")
 
 		#INITIALIZE VARIABLES
 		self.initialized = False
@@ -41,13 +41,13 @@ class RobotController():
 		self.servo6 = None #left ankle
 
 		#RIGHT LEG STARTING POSITIONS
-		self.servo1_start_pos = 80.88 #right thigh
+		self.servo1_start_pos = 85.88 #right thigh
 		self.servo2_start_pos = 96.48 #right shin
 		self.servo3_start_pos = 34.32 #right ankle
 
 		#LEFT LEG STARTING POSITIONS
-		self.servo4_start_pos = 48.96 #left thigh
-		self.servo5_start_pos = 148.8 #left shin
+		self.servo4_start_pos = 43.96 #left thigh
+		self.servo5_start_pos = 158.8 #left shin
 		self.servo6_start_pos = 34.8 #left ankle
 
 		#LINKAGE LENGTHS IN INCHES
@@ -221,6 +221,13 @@ class RobotController():
 		self.servo5.move(self.servo5_start_pos, time=750, wait_to_complete=False)
 		self.servo6.move(self.servo6_start_pos, time=750, wait_to_complete=True)
 
+		print('Servo 1 = ', self.servo1.get_physical_angle())
+		print('Servo 2 = ', self.servo2.get_physical_angle())
+		print('Servo 3 = ', self.servo3.get_physical_angle())
+		print('Servo 4 = ', self.servo4.get_physical_angle())
+		print('Servo 5 = ', self.servo5.get_physical_angle())
+		print('Servo 6 = ', self.servo6.get_physical_angle())
+
 		#######################
 		##CALIBRATE RIGHT LEG##
 		#######################
@@ -383,7 +390,7 @@ class RobotController():
 		servo2_init_pos = self.servo2.get_physical_angle()
 		servo3_init_pos = self.servo3.get_physical_angle()
 
-		servo1_goal_pos = 70.0
+		servo1_goal_pos = 73.0
 		servo2_goal_pos = servo2_init_pos
 
 		diff1 = servo1_goal_pos-servo1_init_pos
@@ -405,7 +412,7 @@ class RobotController():
 			self.servo3.move(servo3_next)
 
 			time.sleep(0.05)
-			dt += 0.07
+			dt += 0.1
 			servo3_prev = servo3_next
 
 	def check_left_motors(self):
@@ -421,7 +428,7 @@ class RobotController():
 		servo6_init_pos = self.servo6.get_physical_angle()
 
 
-		servo4_goal_pos = 63.0 #64.72
+		servo4_goal_pos = 57.0 #64.72
 		servo5_goal_pos = servo5_init_pos
 
 		diff4 = servo4_goal_pos-servo4_init_pos
